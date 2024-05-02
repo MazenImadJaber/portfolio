@@ -1,32 +1,25 @@
 import React from 'react';
-import { Container } from 'react-bootstrap';
+import { Container, Spinner } from 'react-bootstrap';
+import { useRepos } from '../hooks/useRepos';
+import RepoCard from '../components/RepoCard';
 
 
 export default function Portfolio() {
-    const portfolioData = [
-        {
-            title: 'Project 1',
-            description: 'Description of Project 1',
-            link: 'Link to Project 1'
-        },
-        {
-            title: 'Project 2',
-            description: 'Description of Project 2',
-            link: 'Link to Project 2'
-        },
-
-    ];
-
+    const {loading, repos, error } = useRepos();
+    if(loading){
+      return  (
+        <Container>
+        <h1>Portfolio loading. . .</h1>
+            <Spinner animation="border" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </Spinner>
+            </Container>
+        );
+    }
     return (
         <Container>
             <h1>My Portfolio</h1>
-            {portfolioData.map((project, index) => (
-                <div key={index}>
-                    <h2>{project.title}</h2>
-                    <p>{project.description}</p>
-                    <a href={project.link}>View Project</a>
-                </div>
-            ))}
+            { repos.map((data)=> <RepoCard data={data}/>) }
         </Container>
     );
 };

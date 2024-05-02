@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { GIT_PUBLIC_URL } from "../secrets";
+import { useEffect, useState } from "react";
+import { GITHUB_KEY, GIT_PUBLIC_URL } from "../secrets";
 
 async function getRepos(){
     const res = await fetch(GIT_PUBLIC_URL);
@@ -8,9 +8,10 @@ async function getRepos(){
         id: x.id,
         name: x.name,
         description: x.description,
-        url: x.url,
+        url: x.svn_url,
         created: x.created_at,
-        language: x.language
+        language: x.language,
+        languages_url: x.languages_url
     }))
 }
 
@@ -31,5 +32,5 @@ export function useRepos(){
         })();
       }, []);
     
-      return { loading, headlines, error };
+      return { loading, repos, error };
 }
