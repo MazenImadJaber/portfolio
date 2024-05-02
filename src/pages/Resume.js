@@ -1,4 +1,5 @@
 import React from 'react';
+import { Container } from 'react-bootstrap';
 export default function Resume()  {
     const resumeData = {
         name: 'Your Name',
@@ -34,7 +35,7 @@ export default function Resume()  {
     };
 
     return (
-        <div>
+        <Container>
             <h1>{resumeData.name}</h1>
             <p>{resumeData.email}</p>
             <p>{resumeData.phone}</p>
@@ -57,7 +58,7 @@ export default function Resume()  {
                     <p>{edu.degree}, {edu.duration}</p>
                 </div>
             ))}
-        </div>
+        </Container>
     );
 }
 

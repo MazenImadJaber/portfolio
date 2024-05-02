@@ -1,30 +1,26 @@
 import React from 'react';
+import { Container } from 'react-bootstrap';
+import graduationImage from "../assets/IMG_1114.JPG"
+
 export default function About() {
   return (
-    <div className="container">
+    <Container>
       <div className="row">
         <div className="col-lg-6">
           <h2>About Me</h2>
           <p>
-            I'm John Doe, a passionate web developer with experience in building
-            responsive and user-friendly websites. I enjoy turning complex
-            problems into simple, beautiful, and intuitive designs.
+          I am Mazen Jaber,  a driven, and well-educated young software engineer and future data analyst with exceptional communication, time management, and decision-making skills. I am passionate about applying my creative thinking and innovative problem-solving skills in the areas of Software Engineering, software development and Data Analysis. 
           </p>
-          <p>
-            My journey as a developer started back in college, where I
-            discovered my love for coding. Since then, I've been constantly
-            learning and improving my skills to keep up with the latest
-            technologies.
-          </p>
+          
         </div>
         <div className="col-lg-6">
           <img
-            src="https://via.placeholder.com/400"
+            src={graduationImage}
             alt="John Doe"
             className="img-fluid"
           />
         </div>
       </div>
-    </div>
+    </Container>
   );
 }

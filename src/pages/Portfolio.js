@@ -1,4 +1,5 @@
 import React from 'react';
+import { Container } from 'react-bootstrap';
 
 
 export default function Portfolio() {
@@ -17,7 +18,7 @@ export default function Portfolio() {
     ];
 
     return (
-        <div>
+        <Container>
             <h1>My Portfolio</h1>
             {portfolioData.map((project, index) => (
                 <div key={index}>
@@ -26,7 +27,7 @@ export default function Portfolio() {
                     <a href={project.link}>View Project</a>
                 </div>
             ))}
-        </div>
+        </Container>
     );
 };
 
