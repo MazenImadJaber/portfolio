@@ -1,6 +1,5 @@
-import Card from "react-bootstrap/Card";
 import RepoLanguages from "./RepoLanguages";
-import { Badge } from "react-bootstrap";
+import { Badge , Card} from "react-bootstrap";
 import React, { useEffect, useState } from "react";
 import { NINJA_KEY } from "../secrets";
 import LoadingSpanner from "./LoadingSpanner";
@@ -31,14 +30,14 @@ export default function RepoCard({ data }) {
   }, []);
   return (
     <Card
-    className="h-100"
+    className="h-100 d-flex flex-column"
 
       onDoubleClick={() => {
         window.open(data.url, "_blank");
       }}
     >
         <Card.Body
-        className=" flex-column"
+        className="d-flex flex-column"
         >
           <Card.Title href={data.url}>{data.name}</Card.Title>
           {img ? <Card.Img variant="top" src={img} /> : <LoadingSpanner />}
@@ -46,6 +45,8 @@ export default function RepoCard({ data }) {
             <Card.Text>Description: {data.description}</Card.Text>
           ) : null}
 
+          
+          <div className="mt-auto">
           {data.language ? (
             <Card.Text>
               Language: <Badge>{data.language}</Badge>
@@ -56,7 +57,8 @@ export default function RepoCard({ data }) {
               languages: <RepoLanguages url={data.languages_url} />{" "}
             </Card.Text>
           )}
-          <Card.Text> {Date(data.date).toString().split('T')[0]}</Card.Text>
+          <small className="text-muted">{Date(data.date).toString().split('T')[0]}</small>
+        </div>
         </Card.Body>
     </Card>
   );
