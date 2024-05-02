@@ -20,7 +20,7 @@ export default function Portfolio() {
             <h1>My Portfolio</h1>
             <Row>
             { repos.map((data,index)=> (
-                <Col key={index}  >
+                <Col key={index} xs={12} sm={6} md={4} lg={3} >
                 <RepoCard data={data}/>
                 </Col>
             )) }

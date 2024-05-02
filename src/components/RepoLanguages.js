@@ -9,8 +9,8 @@ async function getRepoLanguages(url){
 }
 
 export default function RepoLanguages(props) {
-  // const [loading, languages, error] = useRepoLanguages("")
-  const[loading,setLoading]=useState(true)
+
+  const[loading,setLoading]=useState(false)
   const[languages, setLanguages]=useState([])
 
   useEffect(() => {
