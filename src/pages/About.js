@@ -9,7 +9,10 @@ export default function About() {
         <div className="col-lg-6">
           <h2>About Me</h2>
           <p>
-          I am Mazen Jaber,  a driven, and well-educated young software engineer and future data analyst with exceptional communication, time management, and decision-making skills. I am passionate about applying my creative thinking and innovative problem-solving skills in the areas of Software Engineering, software development and Data Analysis. 
+         My Name is Mazen, Orignally from Syria, been in Australia for 10 years!
+          </p>
+          <p>
+            I am a software and computer systems graduate and Currentlly undertaking my Masters degree in data analytics at QUT
           </p>
           
         </div>
