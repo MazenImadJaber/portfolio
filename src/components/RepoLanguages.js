@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Badge, Spinner } from 'react-bootstrap';
+import LoadingSpanner from './LoadingSpanner';
 async function getRepoLanguages(url){
   const res = await fetch(url);
   const data = await res.json();
@@ -26,9 +27,7 @@ export default function RepoLanguages(props) {
   if(loading){
     return  (
    
-          <Spinner animation="border" role="status">
-            <span className="visually-hidden">Loading...</span>
-          </Spinner>
+          <LoadingSpanner />
        
       );
   }

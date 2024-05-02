@@ -1,7 +1,8 @@
 import React from 'react';
-import { Container, Spinner } from 'react-bootstrap';
+import { Col, Container, Row, Spinner } from 'react-bootstrap';
 import { useRepos } from '../hooks/useRepos';
 import RepoCard from '../components/RepoCard';
+import LoadingSpanner from '../components/LoadingSpanner';
 
 
 export default function Portfolio() {
@@ -10,16 +11,21 @@ export default function Portfolio() {
       return  (
         <Container>
         <h1>Portfolio loading. . .</h1>
-            <Spinner animation="border" role="status">
-              <span className="visually-hidden">Loading...</span>
-            </Spinner>
+            <LoadingSpanner />
             </Container>
         );
     }
     return (
         <Container>
             <h1>My Portfolio</h1>
-            { repos.map((data)=> <RepoCard data={data}/>) }
+            <Row>
+            { repos.map((data,index)=> (
+                <Col key={index}  >
+                <RepoCard data={data}/>
+                </Col>
+            )) }
+            </Row>
+          
         </Container>
     );
 };
