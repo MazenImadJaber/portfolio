@@ -6,27 +6,26 @@ import Portfolio from "./pages/Portfolio";
 import Home from "./pages/Home";
 import "bootstrap/dist/css/bootstrap.min.css";
 import NavBarComp from "./components/NavBarComp";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 function App() {
   return (
     <Router>
       <div className="App">
-        {/* header */}
-        <NavBarComp />
-        {/* body */}
+        <Header />
+        <main>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/resume" element={<Resume />} />
           <Route path="/portfolio" element={<Portfolio />} />
         </Routes>
-        <footer className="bg-light text-center text-lg-start">
-          <div className="text-center p-3">
-            <span>Email: mazenj1997@gmail.com</span> |{" "}
-            <span>Phone: +1234567890</span>
-            <br />© {new Date().getFullYear()}
-          </div>
-        </footer>
+        </main>
+
+        
+
+       <Footer />
       </div>
     </Router>
   );
