@@ -19,7 +19,7 @@ async function getImage() {
   return URL.createObjectURL(imageBlob);
 }
 
-export default function RepoCard({ data }) {
+export default function RepoCard({ data , updateLanguages}) {
   const [img, setImg] = useState();
   const [error, setError] = useState();
   useEffect(() => {
@@ -48,8 +48,10 @@ export default function RepoCard({ data }) {
             </Card.Text>
           ) : (
             <Card.Text>
-              {" "}
-              languages: <RepoLanguages url={data.languages_url} />{" "}
+              languages: <RepoLanguages 
+              url={data.languages_url}
+              id = {data.id}
+              updateLanguages = {updateLanguages} />{" "}
             </Card.Text>
           )}
         </div>

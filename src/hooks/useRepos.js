@@ -11,7 +11,8 @@ async function getRepos(){
         url: x.svn_url,
         created: x.created_at,
         language: x.language,
-        languages_url: x.languages_url
+        languages_url: x.languages_url,
+        languages: []
     }))
 }
 
@@ -19,6 +20,8 @@ export function useRepos(){
     const [loading, setLoading] = useState(true);
     const [repos, setRepos] = useState([]);
     const [error, setError] = useState(null);
+
+
     useEffect(() => {
         (async () => {
           try  {
@@ -31,6 +34,7 @@ export function useRepos(){
           
         })();
       }, []);
+   
     
       return { loading, repos, error };
 }
