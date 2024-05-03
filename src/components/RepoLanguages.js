@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Badge, Spinner } from 'react-bootstrap';
 import LoadingSpanner from './LoadingSpanner';
-async function getRepoLanguages(url){
+export async function getRepoLanguages(url){
   const res = await fetch(url);
   const data = await res.json();
   
