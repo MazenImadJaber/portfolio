@@ -29,8 +29,8 @@ export default function RepoLanguages(props) {
   }
   return (
     <div>
-      {languages.map((x) => (
-        <Badge>{x}</Badge>
+      {languages.map((x,i) => (
+        <Badge key={i+x+props.url}>{x}</Badge>
       ))}
     </div>
   );

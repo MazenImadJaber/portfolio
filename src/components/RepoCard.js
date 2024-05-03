@@ -19,17 +19,25 @@ async function getImage() {
   return URL.createObjectURL(imageBlob);
 }
 
-export default function RepoCard({ data , updateLanguages}) {
+export default function RepoCard({ data , updateLanguages,updateImage}) {
   const [img, setImg] = useState();
   const [error, setError] = useState();
   useEffect(() => {
-    (async () => {
-      try {
-        setImg(await getImage());
-      } catch (err) {
-        setError(err);
-      }
-    })();
+    if(!data.image){
+      (async () => {
+        try {
+
+          const temp = await getImage()
+          setImg(temp);
+          updateImage(data.id, temp);
+        } catch (err) {
+          setError(err);
+        }
+      })();
+    } else{
+      setImg(data.image)
+    }
+   
   }, []);
   return (
     <Card className=" h-100">
@@ -56,7 +64,7 @@ export default function RepoCard({ data , updateLanguages}) {
           )}
         </div>
 
-        <div class="card-footer">
+        <div className="card-footer">
           <Button
             className="mt-6"
             variant="primary"

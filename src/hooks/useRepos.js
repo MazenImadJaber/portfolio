@@ -12,7 +12,8 @@ async function getRepos(){
         created: x.created_at,
         language: x.language,
         languages_url: x.languages_url,
-        languages: []
+        languages: [],
+        image: null
     }))
 }
 

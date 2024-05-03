@@ -1,23 +1,62 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Col, Container, Row, Alert } from "react-bootstrap";
-import { useRepos } from "../hooks/useRepos";
 import RepoCard from "../components/RepoCard";
 import LoadingSpanner from "../components/LoadingSpanner";
+import { GIT_PUBLIC_URL } from "../secrets";
+async function getRepos() {
+  const res = await fetch(GIT_PUBLIC_URL);
+  const data = await res.json();
+  return data.map((x) => ({
+    id: x.id,
+    name: x.name,
+    description: x.description,
+    url: x.svn_url,
+    created: x.created_at,
+    language: x.language,
+    languages_url: x.languages_url,
+    languages: [],
+    image: null,
+  }));
+}
 
 export default function Portfolio() {
-  const { loading, repos, error } = useRepos();
-  const [updatedRepo, SetUpdatedRepos]=useState()
+  const [loading, setLoading] = useState(true);
+  const [repos, setRepos] = useState([]);
+  const [error, setError] = useState(null);
 
-  function  updateRepoLanguages(id, newLanguages){
-    const updatedRepos = repos.map((x)=>{
-      if(id == x.id){
-        return ({...x,languages:newLanguages})
+  useEffect(() => {
+    (async () => {
+      try {
+        setRepos(await getRepos());
+        setLoading(false);
+      } catch (err) {
+        setError(err);
+        setLoading(false);
       }
-      return x
+    })();
+  }, []);
 
+  function updateRepoLanguages(id, newLanguages) {
+    const updatedRepos = repos.map((x) => {
+      if (id === x.id) {
+        return { ...x, languages: newLanguages };
+      }
+      return x;
     });
-    SetUpdatedRepos(updatedRepos)  
-    }
+    setRepos(updatedRepos);
+   
+  }
+  function updateImage(id, newImage) {
+    const updatedRepos = repos.map((x) => {
+      if (id === x.id) {
+        return { ...x, image: newImage };
+      }
+      return x;
+    });
+    setRepos(updatedRepos);
+
+  }
+
   if (loading) {
     return (
       <Container>
@@ -27,7 +66,7 @@ export default function Portfolio() {
     );
   }
   if (error !== null) {
-    return <Alert variant="primary">error</Alert>;
+    return <Alert variant="primary">error fetching github data</Alert>;
   }
 
   return (
@@ -36,10 +75,11 @@ export default function Portfolio() {
       <Row>
         {repos.map((data, index) => (
           <Col key={index} xs={12} sm={6} md={4} lg={3}>
-            <RepoCard 
-            key={data.id}
-            data={data} 
-            updateLanguages ={updateRepoLanguages}
+            <RepoCard
+              key={data.id}
+              data={data}
+              updateLanguages={updateRepoLanguages}
+              updateImage={updateImage}
             />
           </Col>
         ))}
