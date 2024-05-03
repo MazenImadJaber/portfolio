@@ -1,72 +1,101 @@
 import React from "react";
-import { Container } from "react-bootstrap";
-const resumeData = {
-  name: "Mazen Imad Jaber",
-  email: "mazenj1997@gmail.com",
-  summary: ` I am  a driven, and well-educated young software engineer and future data analyst with exceptional communication,
-    time management, and decision-making skills.
-     I am passionate about applying my creative thinking and innovative problem-solving skills in the areas of Software Engineering, software development and Data Analysis. `,
-  phone: "123-456-7890",
-  skills: ["React", "JavaScript", "CSS"],
-  experience: [
-    {
-      company: "Company 1",
-      position: "Position 1",
-      duration: "Jan 2020 - Present",
-      responsibilities: "Describe your responsibilities here",
-    },
-    {
-      company: "Company 2",
-      position: "Position 2",
-      duration: "Jan 2018 - Dec 2019",
-      responsibilities: "Describe your responsibilities here",
-    },
-  ],
-  education: [
-    {
-      institution: "University 1",
-      degree: "Degree 1",
-      duration: "Year 1 - Year 2",
-    },
-    {
-      institution: "University 2",
-      degree: "Degree 2",
-      duration: "Year 3 - Year 4",
-    },
-  ],
-};
-export default function Resume() {
+import { Container, Row, Col, Card } from "react-bootstrap";
+import "./Resume.css";
+
+const Resume = () => {
   return (
-    <Container>
-      <h1>{resumeData.name}</h1>
-      <p>{resumeData.summary}</p>
-      <p>{resumeData.email}</p>
-      <p>{resumeData.phone}</p>
-      <h2>Skills</h2>
-      <ul>
-        {resumeData.skills.map((skill, index) => (
-          <li key={index}>{skill}</li>
-        ))}
-      </ul>
-      <h2>Experience</h2>
-      {resumeData.experience.map((exp, index) => (
-        <div key={index}>
-          <h3>{exp.company}</h3>
-          <p>
-            {exp.position}, {exp.duration}
-          </p>
-          <p>{exp.responsibilities}</p>
-        </div>
-      ))}
-      <h2>Education</h2>
-      {resumeData.education.map((edu, index) => (
-        <div key={index}>
-          <h3>{edu.institution}</h3>
-          <p>
-            {edu.degree}, {edu.duration}
-          </p>
-        </div>
-      ))}
+    <Container className="mt-5">
+      <Row>
+        <Col lg={8}>
+          <Card className="p-4 mb-4">
+            <h2>Summary</h2>
+            <p>
+              Methodical, driven, and well-educated young software engineering
+              professional with exceptional communication, time management, and
+              decision-making skills. Adept at identifying issues with existing
+              web designs, creating innovative new software programs, and
+              applying excellent troubleshooting skills. Equipped with broad
+              knowledge of all phases of the software development life. Conveys
+              technical information to diverse audiences leveraging outstanding
+              communication skills. Excel at troubleshooting, problem-solving,
+              and being collaborative team player.
+            </p>
+          </Card>
+
+          <Card className="p-4 mb-4">
+            <h2>Core Competencies</h2>
+            <ul>
+              <Row>
+                <Col>
+                  <li>Strategic Thinking</li>
+                  <li>Decision Making</li>
+                  <li>Attention to Detail</li>
+                  <li>Communication & Collaboration</li>
+                  <li>Teamwork</li>
+                  <li>Empathetic</li>
+                </Col>
+                <Col>
+                  <li>Positive</li>
+                  <li>Creative</li>
+                  <li>Learning & Innovation</li>
+                  <li>Information Management</li>
+                  <li>Analytical</li>
+                </Col>
+              </Row>
+            </ul>
+          </Card>
+
+          <Card className="p-4 mb-4">
+            <h2>Technical Proficiencies</h2>
+            <p>
+              <strong>Languages:</strong> C & C#, Java, JS, & TS, MATLAB and
+              Python
+              <br />
+              <strong>Frameworks:</strong> Angular, React & React Native,
+              Bootstrap, NodeJS and .NET for Unity Game Engine
+              <br />
+              <strong>Skills:</strong> Agile Development, Clean Code, Test
+              Driven Development, Machine Learning, Data Structures, Object
+              Oriented Programming, Software Development for Embedded Systems,
+              Signal Processing & Analysis and Image Analysis & Processing
+              <br />
+              <strong>Tools:</strong> AWS, GCP, Terraform, Git
+              <br />
+              <strong>Mathematics:</strong> Calculus, linear algebra, ODEs,
+              Mixed-Integer Programming, Probabilities, Mathematical Modelling &
+              Simulation
+            </p>
+          </Card>
+
+          {/* Add other sections similarly */}
+        </Col>
+
+        <Col lg={4}>
+          <Card className="p-4 mb-4">
+            <h2>Education</h2>
+            <p>
+              <strong>Master of Data Analytics</strong>
+              <br />
+              Queensland University of Technology (QUT), 2024 – current
+              <br />
+              <br />
+              <strong>
+                Bachelor of Engineering, Computer & Software Systems /
+                Mathematical Sciences for Engineering
+              </strong>
+              <br />
+              Queensland University of Technology (QUT), 2021 – with honours
+              <br />
+              <br />
+              <strong>High School Diploma</strong>
+              <br />
+              Sunnybank State High School, Sunny Bank QLD, 2016
+            </p>
+          </Card>
+        </Col>
+      </Row>
     </Container>
   );
-}
+};
+
+export default Resume;
