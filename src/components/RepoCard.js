@@ -32,7 +32,7 @@ export default function RepoCard({ data }) {
     })();
   }, []);
   return (
-    <Card>
+    <Card className=" h-100">
       {img ? <Card.Img variant="top" src={img} /> : <LoadingSpanner />}
       <Card.Body>
         <div>
