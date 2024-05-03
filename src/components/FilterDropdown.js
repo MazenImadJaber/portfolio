@@ -4,7 +4,7 @@ const FilterDropdown = ({ options, onSelect }) => {
   const [selectedOption, setSelectedOption] = useState(null);
 
   const handleSelect = (option) => {
-    console.log("from dropdown: " +option);
+
     onSelect(option);
   };
 
