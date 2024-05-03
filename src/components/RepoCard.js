@@ -1,5 +1,5 @@
 import RepoLanguages from "./RepoLanguages";
-import { Badge, Button, Card, Row } from "react-bootstrap";
+import { Alert, Badge, Button, Card, Row } from "react-bootstrap";
 import React, { useEffect, useState } from "react";
 import LoadingSpanner from "./LoadingSpanner";
 import { NINJA_KEY } from "../secrets";
@@ -19,7 +19,7 @@ async function getImage() {
   return URL.createObjectURL(imageBlob);
 }
 
-export default function RepoCard({ data , updateLanguages,updateImage}) {
+export default function RepoCard({ data ,updateImage}) {
   const [img, setImg] = useState();
   const [error, setError] = useState();
   useEffect(() => {
@@ -41,7 +41,9 @@ export default function RepoCard({ data , updateLanguages,updateImage}) {
   }, []);
   return (
     <Card className=" h-100">
-      {img ? <Card.Img variant="top" src={img} /> : <LoadingSpanner />}
+      {error ? <Alert variant="primary">Error fetching image</Alert>:
+      (img ? <Card.Img variant="top" src={img} /> : <LoadingSpanner />)
+  }
       <Card.Body>
         <div>
           <Card.Title href={data.url}>{data.name}</Card.Title>
@@ -50,18 +52,9 @@ export default function RepoCard({ data , updateLanguages,updateImage}) {
           ) : (
             <Card.Text>No Description</Card.Text>
           )}
-          {data.language ? (
-            <Card.Text>
+         <Card.Text>
               Language: <Badge>{data.language}</Badge>
             </Card.Text>
-          ) : (
-            <Card.Text>
-              languages: <RepoLanguages 
-              url={data.languages_url}
-              id = {data.id}
-              updateLanguages = {updateLanguages} />{" "}
-            </Card.Text>
-          )}
         </div>
 
         <div className="card-footer">
@@ -76,7 +69,7 @@ export default function RepoCard({ data , updateLanguages,updateImage}) {
           </Button>
 
           <small className="text-muted">
-            {Date(data.date).toString().split("T")[0]}
+            {data.created.split("T")[0]}
           </small>
         </div>
       </Card.Body>

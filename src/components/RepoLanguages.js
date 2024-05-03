@@ -1,8 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { Badge, Spinner } from "react-bootstrap";
 import LoadingSpanner from "./LoadingSpanner";
+import { GITHUB_KEY } from "../secrets";
 export async function getRepoLanguages(url) {
-  const res = await fetch(url);
+  const res = await fetch(
+    url,
+    {
+      method: "GET",
+      headers: {
+        Authorization:` Bearer ${GITHUB_KEY}`,
+        'X-GitHub-Api-Version': "2022-11-28",
+      },
+    }
+  )
   const data = await res.json();
 
   return Object.keys(data);
@@ -13,6 +23,7 @@ export default function RepoLanguages(props) {
   const [languages, setLanguages] = useState([]);
 
   useEffect(() => {
+    
     (async () => {
       try {
         const temp = await getRepoLanguages(props.url);

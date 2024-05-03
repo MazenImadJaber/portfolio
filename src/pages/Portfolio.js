@@ -2,10 +2,18 @@ import React, { useEffect, useState } from "react";
 import { Col, Container, Row, Alert } from "react-bootstrap";
 import RepoCard from "../components/RepoCard";
 import LoadingSpanner from "../components/LoadingSpanner";
-import { GIT_PUBLIC_URL } from "../secrets";
+import { GITHUB_KEY, GIT_PUBLIC_URL } from "../secrets";
+import SearchBar from "../components/SearchBar";
 async function getRepos() {
-  const res = await fetch(GIT_PUBLIC_URL);
-  const data = await res.json();
+  const res = await fetch(GIT_PUBLIC_URL, {
+    method: "GET",
+    headers: {
+      Authorization: ` Bearer ${GITHUB_KEY}`,
+      "X-GitHub-Api-Version": "2022-11-28",
+    },
+  });
+  const temp = await res.json();
+  const data = temp.filter((x)=> x.language )
   return data.map((x) => ({
     id: x.id,
     name: x.name,
@@ -13,8 +21,6 @@ async function getRepos() {
     url: x.svn_url,
     created: x.created_at,
     language: x.language,
-    languages_url: x.languages_url,
-    languages: [],
     image: null,
   }));
 }
@@ -23,29 +29,23 @@ export default function Portfolio() {
   const [loading, setLoading] = useState(true);
   const [repos, setRepos] = useState([]);
   const [error, setError] = useState(null);
+  const [searchValue, setSearchValue]=useState("");
 
   useEffect(() => {
-    (async () => {
-      try {
-        setRepos(await getRepos());
-        setLoading(false);
-      } catch (err) {
-        setError(err);
-        setLoading(false);
-      }
-    })();
+    if (loading) {
+      (async () => {
+        try {
+          const res = await getRepos();
+          setRepos(res);
+          setLoading(false);
+        } catch (err) {
+          setError(err);
+          setLoading(false);
+        }
+      })();
+    } 
   }, []);
 
-  function updateRepoLanguages(id, newLanguages) {
-    const updatedRepos = repos.map((x) => {
-      if (id === x.id) {
-        return { ...x, languages: newLanguages };
-      }
-      return x;
-    });
-    setRepos(updatedRepos);
-   
-  }
   function updateImage(id, newImage) {
     const updatedRepos = repos.map((x) => {
       if (id === x.id) {
@@ -54,9 +54,12 @@ export default function Portfolio() {
       return x;
     });
     setRepos(updatedRepos);
-
+   
   }
 
+  function onSearchChange(value) {
+    setSearchValue(value);
+  }
   if (loading) {
     return (
       <Container>
@@ -72,13 +75,21 @@ export default function Portfolio() {
   return (
     <Container>
       <h1>My Portfolio</h1>
+      <SearchBar  onSearchChange={onSearchChange} />
       <Row>
-        {repos.map((data, index) => (
+        {repos
+        .filter((repo) => {
+          if(searchValue ==""){
+            return repo
+          }else if( repo.name.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase() )){
+            return repo
+          }
+        })
+        .map((data, index) => (
           <Col key={index} xs={12} sm={6} md={4} lg={3}>
             <RepoCard
               key={data.id}
               data={data}
-              updateLanguages={updateRepoLanguages}
               updateImage={updateImage}
             />
           </Col>
