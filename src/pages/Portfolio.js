@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Col, Container, Row, Alert } from "react-bootstrap";
+import { Col, Container, Row, Alert, Dropdown } from "react-bootstrap";
 import RepoCard from "../components/RepoCard";
 import LoadingSpanner from "../components/LoadingSpanner";
 import { GITHUB_KEY, GIT_PUBLIC_URL } from "../secrets";
 import SearchBar from "../components/SearchBar";
 import "./Portfolio.css"
+import FilterDropdown from "../components/FilterDropdown";
 async function getRepos() {
   const res = await fetch(GIT_PUBLIC_URL, {
     method: "GET",
@@ -31,6 +32,8 @@ export default function Portfolio() {
   const [repos, setRepos] = useState([]);
   const [error, setError] = useState(null);
   const [searchValue, setSearchValue] = useState("");
+  const [selectedLanguage, setSelectedLanguage]=useState("All");
+  const [dropdownOptions,setDropDownOptions]=useState([])
 
   useEffect(() => {
     if (loading) {
@@ -38,6 +41,7 @@ export default function Portfolio() {
         try {
           const res = await getRepos();
           setRepos(res);
+          setDropDownOptions([... new Set(res.map((x)=> x.language)),"All"])
           setLoading(false);
         } catch (err) {
           setError(err);
@@ -77,7 +81,14 @@ export default function Portfolio() {
     <Container>
       <h1>My Portfolio</h1>
       <Row>
+      <Col className="col-8">
         <SearchBar onSearchChange={onSearchChange} />
+        </Col>
+      <Col className="col-4 d-flex">
+        <FilterDropdown options={dropdownOptions} onSelect={setSelectedLanguage}/>
+      </Col>
+      
+  
       </Row>
 
       <Row>
@@ -92,6 +103,14 @@ export default function Portfolio() {
             ) {
               return repo;
             }
+          })
+          .filter((repo)=>{
+            if(selectedLanguage === "All"){
+              return repo
+            }else if(
+              repo.language === selectedLanguage
+            )
+            return repo
           })
           .map((data, index) => (
             <Col key={index} xs={12} sm={6} md={4} lg={3}>
