@@ -4,7 +4,7 @@ const FilterDropdown = ({ options, onSelect }) => {
   const [selectedOption, setSelectedOption] = useState(null);
 
   const handleSelect = (option) => {
-
+    setSelectedOption(option);
     onSelect(option);
   };
 
@@ -12,7 +12,7 @@ const FilterDropdown = ({ options, onSelect }) => {
 
     <Dropdown>
         <Dropdown.Toggle> 
-          Select Language 
+          {selectedOption? selectedOption :"Select Language" }
         </Dropdown.Toggle> 
         <Dropdown.Menu>
             {options.map((name,index)=>(
