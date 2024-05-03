@@ -1,20 +1,20 @@
-import { useState } from "react"
-import { Button } from "react-bootstrap"
+import { useState } from "react";
+import { Button, Form, InputGroup } from "react-bootstrap";
 
 export default function SearchBar(props) {
-const [innerSearch, setInnerSearch]= useState("")
-return(<div>
-    <input
-    name="search"
-    id="search"
-    type="search"
-    placeholder="Search Project Names"
-    value={innerSearch}
-    onChange={(event) => { 
-        setInnerSearch(event.target.value)
-        props.onSearchChange(event.target.value)
-     }}
-    />
-    
-</div>)
+  const [innerSearch, setInnerSearch] = useState("");
+  return (
+    <Form>
+      <InputGroup>
+        <Form.Control
+          placeholder="search name"
+          value={innerSearch}
+          onChange={(event) => {
+            setInnerSearch(event.target.value);
+            props.onSearchChange(event.target.value);
+          }}
+        />
+      </InputGroup>
+    </Form>
+  );
 }

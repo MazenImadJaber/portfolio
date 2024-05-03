@@ -4,6 +4,7 @@ import RepoCard from "../components/RepoCard";
 import LoadingSpanner from "../components/LoadingSpanner";
 import { GITHUB_KEY, GIT_PUBLIC_URL } from "../secrets";
 import SearchBar from "../components/SearchBar";
+import "./Portfolio.css"
 async function getRepos() {
   const res = await fetch(GIT_PUBLIC_URL, {
     method: "GET",
@@ -13,7 +14,7 @@ async function getRepos() {
     },
   });
   const temp = await res.json();
-  const data = temp.filter((x)=> x.language )
+  const data = temp.filter((x) => x.language);
   return data.map((x) => ({
     id: x.id,
     name: x.name,
@@ -29,7 +30,7 @@ export default function Portfolio() {
   const [loading, setLoading] = useState(true);
   const [repos, setRepos] = useState([]);
   const [error, setError] = useState(null);
-  const [searchValue, setSearchValue]=useState("");
+  const [searchValue, setSearchValue] = useState("");
 
   useEffect(() => {
     if (loading) {
@@ -43,7 +44,7 @@ export default function Portfolio() {
           setLoading(false);
         }
       })();
-    } 
+    }
   }, []);
 
   function updateImage(id, newImage) {
@@ -54,12 +55,12 @@ export default function Portfolio() {
       return x;
     });
     setRepos(updatedRepos);
-   
   }
 
   function onSearchChange(value) {
     setSearchValue(value);
   }
+
   if (loading) {
     return (
       <Container>
@@ -75,25 +76,28 @@ export default function Portfolio() {
   return (
     <Container>
       <h1>My Portfolio</h1>
-      <SearchBar  onSearchChange={onSearchChange} />
+      <Row>
+        <SearchBar onSearchChange={onSearchChange} />
+      </Row>
+
       <Row>
         {repos
-        .filter((repo) => {
-          if(searchValue ==""){
-            return repo
-          }else if( repo.name.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase() )){
-            return repo
-          }
-        })
-        .map((data, index) => (
-          <Col key={index} xs={12} sm={6} md={4} lg={3}>
-            <RepoCard
-              key={data.id}
-              data={data}
-              updateImage={updateImage}
-            />
-          </Col>
-        ))}
+          .filter((repo) => {
+            if (searchValue === "") {
+              return repo;
+            } else if (
+              repo.name
+                .toLocaleLowerCase()
+                .includes(searchValue.toLocaleLowerCase())
+            ) {
+              return repo;
+            }
+          })
+          .map((data, index) => (
+            <Col key={index} xs={12} sm={6} md={4} lg={3}>
+              <RepoCard key={data.id} data={data} updateImage={updateImage} />
+            </Col>
+          ))}
       </Row>
     </Container>
   );
