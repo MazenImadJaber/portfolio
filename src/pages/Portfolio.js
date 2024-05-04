@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Col, Container, Row, Alert, Dropdown } from "react-bootstrap";
+import { Col, Container, Row, Alert } from "react-bootstrap";
 import RepoCard from "../components/RepoCard";
 import LoadingSpanner from "../components/LoadingSpanner";
 import { GITHUB_KEY, GIT_PUBLIC_URL } from "../secrets";
 import SearchBar from "../components/SearchBar";
-import "./Portfolio.css"
+import "./Portfolio.css";
 import FilterDropdown from "../components/FilterDropdown";
 async function getRepos() {
   const res = await fetch(GIT_PUBLIC_URL, {
@@ -28,20 +28,25 @@ async function getRepos() {
 }
 
 export default function Portfolio() {
+  // states for repos
   const [loading, setLoading] = useState(true);
   const [repos, setRepos] = useState([]);
   const [error, setError] = useState(null);
+  // state for text search bar
   const [searchValue, setSearchValue] = useState("");
-  const [selectedLanguage, setSelectedLanguage]=useState("All");
-  const [dropdownOptions,setDropDownOptions]=useState([])
+  // state for selected langague, defualt all
+  const [selectedLanguage, setSelectedLanguage] = useState("All");
+  // init dropdwon options for langague filtering
+  const [dropdownOptions, setDropDownOptions] = useState([]);
 
   useEffect(() => {
     if (loading) {
       (async () => {
         try {
-          const res = await getRepos();
+          const res = await getRepos(); // get github repos
           setRepos(res);
-          setDropDownOptions([... new Set(res.map((x)=> x.language)),"All"])
+          // get unique languages from the fetched data and set them to the dropdowns
+          setDropDownOptions([...new Set(res.map((x) => x.language)), "All"]);
           setLoading(false);
         } catch (err) {
           setError(err);
@@ -50,7 +55,8 @@ export default function Portfolio() {
       })();
     }
   }, []);
-
+  // callback function to update the repos with an image genrated from the ninjas api
+  // still buggy
   function updateImage(id, newImage) {
     const updatedRepos = repos.map((x) => {
       if (id === x.id) {
@@ -60,7 +66,7 @@ export default function Portfolio() {
     });
     setRepos(updatedRepos);
   }
-
+  // callback function to updated text search value from the search bar
   function onSearchChange(value) {
     setSearchValue(value);
   }
@@ -81,18 +87,20 @@ export default function Portfolio() {
     <Container>
       <h1>My Portfolio</h1>
       <Row>
-      <Col className="col-8">
-        <SearchBar onSearchChange={onSearchChange} />
+        <Col className="col-8">
+          <SearchBar onSearchChange={onSearchChange} />
         </Col>
-      <Col className="col-4 d-flex">
-        <FilterDropdown options={dropdownOptions} onSelect={setSelectedLanguage}/>
-      </Col>
-      
-  
+        <Col className="col-4 d-flex">
+          <FilterDropdown
+            options={dropdownOptions}
+            onSelect={setSelectedLanguage}
+          />
+        </Col>
       </Row>
 
       <Row>
         {repos
+          // filter repos with the language and search text
           .filter((repo) => {
             if (searchValue === "") {
               return repo;
@@ -104,14 +112,12 @@ export default function Portfolio() {
               return repo;
             }
           })
-          .filter((repo)=>{
-            if(selectedLanguage === "All"){
-              return repo
-            }else if(
-              repo.language === selectedLanguage
-            )
-            return repo
+          .filter((repo) => {
+            if (selectedLanguage === "All") {
+              return repo;
+            } else if (repo.language === selectedLanguage) return repo;
           })
+          // map them to card componenets
           .map((data, index) => (
             <Col key={index} xs={12} sm={6} md={4} lg={3}>
               <RepoCard key={data.id} data={data} updateImage={updateImage} />
