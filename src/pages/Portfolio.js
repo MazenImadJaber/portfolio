@@ -39,7 +39,10 @@ export default function Portfolio(props) {
   const [dropdownOptions, setDropDownOptions] = useState([]);
 
   useEffect(() => {
+   
+    
     if (props.repos.length === 0) {
+      document.title = 'Portfolio';
       (async () => {
         try {
           const res = await getRepos(); // get github repos
@@ -53,10 +56,12 @@ export default function Portfolio(props) {
         }
       })();
     }else{
+      document.title = 'Portfolio';
       setLoading(false)
       setDropDownOptions([...new Set(props.repos.map((x) => x.language)), "All"]);
     }
   }, []);
+
   // callback function to update the repos with an image genrated from the ninjas api
   function updateImage(id, newImage) {
     props.setRepos((old) => {

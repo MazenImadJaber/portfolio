@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Container, Row, Col, Button} from 'react-bootstrap';
 import "./Home.css"
 import { useNavigate } from 'react-router-dom';
 export default function Home() {
+  useEffect(()=>{
+    document.title = 'Home';
+  },[])
+
     const navigate = useNavigate();
     const goToAboutPage=()=>{
         navigate("/about")

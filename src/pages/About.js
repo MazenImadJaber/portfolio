@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Container } from "react-bootstrap";
 import graduationImage from "../assets/IMG_1114.JPG";
 import "./About.css";
 
 export default function About() {
+  useEffect(()=>{
+    document.title = 'About'
+  },[])
   return (
     <Container>
       <div className="row">

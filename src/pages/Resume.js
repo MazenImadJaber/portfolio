@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import "./Resume.css";
 
 const Resume = () => {
+  useEffect(()=>{
+    document.title = 'Resume';
+  },[])
   return (
     <Container className="mt-5">
       <Row>
