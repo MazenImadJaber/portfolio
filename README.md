@@ -1,6 +1,24 @@
-# Getting Started with Create React App
+# Personal portfolio app - React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## The purpose of the application
+This application was built to showcase my coding abilities using the github api, and display some information about me.
+## How to contribute
+o contribute, please follow these steps:
+
+   - Fork the repository
+   - Clone the forked repository to your local machine.
+   - Make changes or additions as needed.
+   - Test your changes thoroughly.
+   - Commit your changes with clear and descriptive messages.
+   - Push your changes to your forked repository.
+   - Submit a pull request to the main repository.
+
+For major changes, please open an issue first to discuss the proposed changes.
+## Features
+## dependencies
+## Architecture 
+
 
 ## Available Scripts
 
@@ -38,33 +56,11 @@ If you aren't satisfied with the build tool and configuration choices, you can `
 Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
 You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## report issues
+f you encounter any issues with [Application Name], please follow these steps to report them:
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+  1.  Check the existing issues to see if your problem has already been reported.
+   2. If not, create a new issue, providing detailed information about the problem, including steps to reproduce it.
+   3. Include any error messages or screenshots that may help in diagnosing the issue.
+   4. Assign appropriate labels and priorities to the issue.
+   5. Await feedback or resolution from the development team.
