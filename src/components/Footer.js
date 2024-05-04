@@ -9,9 +9,11 @@ export default function Footer() {
           <Col className="text-center p-3">Email: mazenj1997@gmail.com</Col>
           <Col className="text-center p-3">Phone: +1234567890</Col>
         </Row>
-
         <Row className="text-center p-3">
-          <Col className="text-center p-3">© {new Date().getFullYear()}</Col>
+          <Col className="text-center p-3">© {new Date().getFullYear()} Mazen Imad Jaber</Col>
+        </Row>
+        <Row className="text-center p-3">
+          <Col> This app was build with React</Col>
         </Row>
       </Container>
     </footer>

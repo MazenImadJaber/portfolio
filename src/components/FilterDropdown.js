@@ -13,7 +13,7 @@ const FilterDropdown = ({ options, onSelect }) => {
 
     <Dropdown>
         <Dropdown.Toggle> 
-          {selectedOption? selectedOption :"Select Language" }
+          {selectedOption? selectedOption : "Select Language" }
         </Dropdown.Toggle> 
         <Dropdown.Menu>
             {options.map((name,index)=>(
@@ -21,10 +21,8 @@ const FilterDropdown = ({ options, onSelect }) => {
                 key={index}
                 onClick={(event) => {
                     handleSelect(event.target.text);
-                  
                 }}
                 value={name}
-
                 >
                     {name}
                 </Dropdown.Item>

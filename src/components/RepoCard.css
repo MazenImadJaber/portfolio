@@ -1,18 +1,11 @@
-/* Card */
+
 .card {
     display: flex;
     flex-direction: column;
     min-width: 18rem;
 
   }
-  
-  /* Card Image */
-  .card-img-top {
-    /* Add your styles for the image here */
-    
-  }
-  
-  /* Card Body */
+
   .card-body {
 display: flex;
 flex-direction: column;
@@ -25,32 +18,11 @@ justify-content: space-around;
     flex-direction: column;
     margin-top: 24px;
   }
-  /* Card Title */
-  .card-title {
-    /* Add your styles for the card title here */
-  }
-  
-  /* Card Text */
-  .card-text {
-    /* Add your styles for the card text here */
-  }
-  
-  /* Badge */
-  .badge {
-    /* Add your styles for the badge here */
-  }
-  
-  /* Footer */
-  footer {
-    /* Add your styles for the footer here */
-  }
   
   .btn-card {
     color: #fff;
     background-color: #433284 !important;
-    background-color: cutom-color;
     border-color: #433284 !important;
     border-color: cutom-cor;
-    /* margin: 0 auto;
-    width: 20vw; */
+
 }
