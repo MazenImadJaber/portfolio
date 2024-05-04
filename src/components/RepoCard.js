@@ -59,7 +59,7 @@ export default function RepoCard({ data ,updateImage}) {
 
         <div className="card-footer">
           <Button
-            className="mt-6"
+            className="mt-6 btn-card"
             variant="primary"
             onClick={() => {
               window.open(data.url, "_blank");

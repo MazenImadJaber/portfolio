@@ -12,9 +12,9 @@ export default function Home() {
       <Row noGutters className="hero-section">
         <Col className="hero-image" >
           <div className="hero-content">
-            <h1>Welcome to My Portfolio</h1>
-            <p>Hello! My name is Mazen Imad Jaber, Welcome to my perosnal website and Portfolio!</p>
-            <Button variant="primary" onClick={()=> goToAboutPage()}>Learn More</Button>
+            <h1 className='h1-home'>Welcome to My Portfolio</h1>
+            <p className='p-home'>Hello! My name is Mazen Imad Jaber, Welcome to my perosnal website and Portfolio!</p>
+            <Button className='btn-home' variant="primary" onClick={()=> goToAboutPage()}>Learn More</Button>
           </div>
         </Col>
       </Row>

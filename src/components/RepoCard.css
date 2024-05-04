@@ -45,8 +45,12 @@ justify-content: space-around;
     /* Add your styles for the footer here */
   }
   
-  /* Button */
-  .btn {
-    /* Add your styles for the button here */
-  
-  }
+  .btn-card {
+    color: #fff;
+    background-color: #433284 !important;
+    background-color: cutom-color;
+    border-color: #433284 !important;
+    border-color: cutom-cor;
+    /* margin: 0 auto;
+    width: 20vw; */
+}

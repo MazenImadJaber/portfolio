@@ -8,7 +8,7 @@ const Resume = () => {
       <Row>
         <Col lg={8}>
           <Card className="p-4 mb-4">
-            <h2>Summary</h2>
+            <h2 className="h2-about">Summary</h2>
             <p>
               Methodical, driven, and well-educated young software engineering
               professional with exceptional communication, time management, and
@@ -23,7 +23,7 @@ const Resume = () => {
           </Card>
 
           <Card className="p-4 mb-4">
-            <h2>Core Competencies</h2>
+            <h2 className="h2-about">Core Competencies</h2>
             <ul>
               <Row>
                 <Col>
@@ -46,7 +46,7 @@ const Resume = () => {
           </Card>
 
           <Card className="p-4 mb-4">
-            <h2>Technical Proficiencies</h2>
+            <h2 className="h2-about">Technical Proficiencies</h2>
             <p>
               <strong>Languages:</strong> C & C#, Java, JS, & TS, MATLAB and
               Python
@@ -72,7 +72,7 @@ const Resume = () => {
 
         <Col lg={4}>
           <Card className="p-4 mb-4">
-            <h2>Education</h2>
+            <h2 className="h2-about">Education</h2>
             <p>
               <strong>Master of Data Analytics</strong>
               <br />
