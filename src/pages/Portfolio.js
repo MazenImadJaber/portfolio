@@ -27,10 +27,9 @@ async function getRepos() {
   }));
 }
 
-export default function Portfolio() {
+export default function Portfolio(props) {
   // states for repos
   const [loading, setLoading] = useState(true);
-  const [repos, setRepos] = useState([]);
   const [error, setError] = useState(null);
   // state for text search bar
   const [searchValue, setSearchValue] = useState("");
@@ -40,11 +39,11 @@ export default function Portfolio() {
   const [dropdownOptions, setDropDownOptions] = useState([]);
 
   useEffect(() => {
-    if (loading) {
+    if (props.repos.length === 0) {
       (async () => {
         try {
           const res = await getRepos(); // get github repos
-          setRepos(res);
+          props.setRepos(res);
           // get unique languages from the fetched data and set them to the dropdowns
           setDropDownOptions([...new Set(res.map((x) => x.language)), "All"]);
           setLoading(false);
@@ -53,11 +52,14 @@ export default function Portfolio() {
           setLoading(false);
         }
       })();
+    }else{
+      setLoading(false)
+      setDropDownOptions([...new Set(props.repos.map((x) => x.language)), "All"]);
     }
   }, []);
   // callback function to update the repos with an image genrated from the ninjas api
   function updateImage(id, newImage) {
-    setRepos((old) => {
+    props.setRepos((old) => {
       return old.map((x) => {
         if (id === x.id) {
           return { ...x, image: newImage };
@@ -99,7 +101,7 @@ export default function Portfolio() {
       </Row>
 
       <Row>
-        {repos
+        {props.repos
           // filter repos with the language and search text
           .filter((repo) => {
             if (searchValue === "") {
