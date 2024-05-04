@@ -56,15 +56,15 @@ export default function Portfolio() {
     }
   }, []);
   // callback function to update the repos with an image genrated from the ninjas api
-  // still buggy
   function updateImage(id, newImage) {
-    const updatedRepos = repos.map((x) => {
-      if (id === x.id) {
-        return { ...x, image: newImage };
-      }
-      return x;
+    setRepos((old) => {
+      return old.map((x) => {
+        if (id === x.id) {
+          return { ...x, image: newImage };
+        }
+        return x;
+      });
     });
-    setRepos(updatedRepos);
   }
   // callback function to updated text search value from the search bar
   function onSearchChange(value) {
