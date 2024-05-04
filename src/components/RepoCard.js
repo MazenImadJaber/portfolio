@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import LoadingSpanner from "./LoadingSpanner";
 import { NINJA_KEY } from "../secrets";
 import "./RepoCard.css";
+import { useNavigate } from "react-router-dom";
 async function getImage() {
   const res = await fetch(
     `https://api.api-ninjas.com/v1/randomimage?category=technology`,
@@ -39,8 +40,13 @@ export default function RepoCard({ data ,updateImage}) {
     }
    
   }, []);
+  const navigate = useNavigate();
+  const goToCardPage=()=>{
+      navigate("/"+data.id)
+  }
   return (
-    <Card className=" h-100">
+    <Card className=" h-100"
+    onClick={()=> goToCardPage()}>
       {error ? <Alert variant="primary">Error fetching image</Alert>:
       (img ? <Card.Img variant="top" src={img} /> : <LoadingSpanner />)
   }
